@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils";
-import { GeistSans } from "geist/font/sans";
-import Image from "next/image";
-import Link from "next/link";
+import { cn } from "@/lib/utils"
+import { GeistSans } from "geist/font/sans"
+import Image from "next/image"
+import Link from "next/link"
 
 export function Logo() {
   return (
@@ -13,5 +13,5 @@ export function Logo() {
         </p>
       </div>
     </Link>
-  );
+  )
 }

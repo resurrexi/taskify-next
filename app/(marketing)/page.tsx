@@ -1,14 +1,14 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { GeistSans } from "geist/font/sans";
-import { Medal } from "lucide-react";
-import { Poppins } from "next/font/google";
-import Link from "next/link";
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { GeistSans } from "geist/font/sans"
+import { Medal } from "lucide-react"
+import { Poppins } from "next/font/google"
+import Link from "next/link"
 
 const poppinsFont = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
+})
 
 export default function MarketingPage() {
   return (
@@ -44,5 +44,5 @@ export default function MarketingPage() {
         <Link href="/sign-up">Get Taskify for free</Link>
       </Button>
     </div>
-  );
+  )
 }
