@@ -34,3 +34,23 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Development with Prisma
+
+Local dev uses `.env.local` for storing environment variables. Next.js by default uses this file to load environment variables, but Prisma uses `.env`. Therefore, there is a little bit of extra work to get Prisma to load `.env.local`.
+
+1. Install `dotenv-cli` globally.
+
+```sh
+npm i -g dotenv-cli
+```
+
+2. Add custom scripts to `package.json`, e.g:
+
+```json
+  "scripts": {
+    ...,
+    "prismaGenerate": "dotenv -e .env.local npx prisma generate",
+    "prismaPush": "dotenv -e .env.local npx db push",
+  },
+```
