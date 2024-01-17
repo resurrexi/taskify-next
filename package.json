@@ -9,7 +9,9 @@
     "lint": "next lint",
     "format": "./node_modules/.bin/prettier --write .",
     "prisma": "dotenv -e .env.local npx prisma studio",
-    "dbpush": "dotenv -e .env.local npx prisma db push"
+    "dbreset": "dotenv -e .env.local npx prisma migrate reset",
+    "dbpush": "dotenv -e .env.local npx prisma db push",
+    "dbgenerate": "dotenv -e .env.local npx prisma generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.1",
