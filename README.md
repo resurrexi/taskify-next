@@ -50,7 +50,10 @@ npm i -g dotenv-cli
 ```json
   "scripts": {
     ...,
-    "prismaGenerate": "dotenv -e .env.local npx prisma generate",
+    "prismaReset": "dotenv -e .env.local npx prisma migrate reset",
     "prismaPush": "dotenv -e .env.local npx db push",
+    "prismaGenerate": "dotenv -e .env.local npx prisma generate",
   },
 ```
+
+3. After making schema changes, run the custom scripts.
