@@ -1,5 +1,6 @@
 import { FormPopover } from "@/components/form/form-popover"
 import { Hint } from "@/components/hint"
+import { Skeleton } from "@/components/ui/skeleton"
 import { db } from "@/lib/db"
 import { auth } from "@clerk/nextjs"
 import { HelpCircle, User2 } from "lucide-react"
@@ -28,7 +29,7 @@ export async function BoardList() {
         <User2 className="mr-2 h-6 w-6" />
         Your board
       </div>
-      <div className="gap--4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {boards.map((board) => (
           <Link
             key={board.id}
@@ -56,6 +57,21 @@ export async function BoardList() {
           </div>
         </FormPopover>
       </div>
+    </div>
+  )
+}
+
+BoardList.Skeleton = function SkeletonBoardList() {
+  return (
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+      <Skeleton className="aspect-video h-full w-full gap-2" />
+      <Skeleton className="aspect-video h-full w-full gap-2" />
+      <Skeleton className="aspect-video h-full w-full gap-2" />
+      <Skeleton className="aspect-video h-full w-full gap-2" />
+      <Skeleton className="aspect-video h-full w-full gap-2" />
+      <Skeleton className="aspect-video h-full w-full gap-2" />
+      <Skeleton className="aspect-video h-full w-full gap-2" />
+      <Skeleton className="aspect-video h-full w-full gap-2" />
     </div>
   )
 }
