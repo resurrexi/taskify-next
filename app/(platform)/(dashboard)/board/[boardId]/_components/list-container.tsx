@@ -1,14 +1,18 @@
 "use client"
 
+import { updateCardOrder } from "@/actions/update-card-order"
+import { updateListOrder } from "@/actions/update-list-order"
+import { useAction } from "@/hooks/use-action"
 import { ListWithCards } from "@/types"
 import { DragDropContext, Droppable } from "@hello-pangea/dnd"
 import { useEffect, useState } from "react"
+import { toast } from "sonner"
 import { ListForm } from "./list-form"
 import { ListItem } from "./list-item"
 
 interface ListContainerProps {
   data: ListWithCards[]
-  boardId: String
+  boardId: string
 }
 
 function reorder<T>(list: T[], startIndex: number, endIndex: number) {
@@ -21,6 +25,24 @@ function reorder<T>(list: T[], startIndex: number, endIndex: number) {
 
 export const ListContainer = ({ data, boardId }: ListContainerProps) => {
   const [orderedData, setOrderedData] = useState(data)
+
+  const { execute: executeUpdateListOrder } = useAction(updateListOrder, {
+    onSuccess: () => {
+      toast.success("List reordered")
+    },
+    onError: (error) => {
+      toast.error(error)
+    },
+  })
+
+  const { execute: executeUpdateCardOrder } = useAction(updateCardOrder, {
+    onSuccess: () => {
+      toast.success("Card reordered")
+    },
+    onError: (error) => {
+      toast.error(error)
+    },
+  })
 
   const onDragEnd = (result: any) => {
     const { destination, source, type } = result
@@ -45,7 +67,7 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
       )
 
       setOrderedData(items)
-      // TODO: trigger server action
+      executeUpdateListOrder({ items, boardId })
     }
 
     // If user moves card
@@ -90,7 +112,7 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
         sourceList.cards = reorderedCards
 
         setOrderedData(newOrderedData)
-        // TODO: trigger server action
+        executeUpdateCardOrder({ items: reorderedCards, boardId })
       } else {
         // If card is moved to another list
 
@@ -114,7 +136,7 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
         })
 
         setOrderedData(newOrderedData)
-        // TODO: trigger server action
+        executeUpdateCardOrder({ items: destList.cards, boardId })
       }
     }
   }
